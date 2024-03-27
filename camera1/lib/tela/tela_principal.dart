@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'package:camera1/componetes/estilo.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:image_picker/image_picker.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({super.key});
@@ -9,6 +12,20 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+  final imagePicker = ImagePicker();
+  File? imagem;
+
+  julia(ImageSource source)  async{
+    final pickedFile = await imagePicker.pickImage(source: source);
+
+    if(pickedFile != null){
+      setState(() {
+        imagem = File(pickedFile.path);
+      });
+      GallerySaver.saveImage(imagem!.path);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +40,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 decoration: containerStyle,
                 child: TextButton(
                   onPressed: (){
-                    
+                    julia(ImageSource.camera);
                   },
                   child: Center(
                     child: containerText,

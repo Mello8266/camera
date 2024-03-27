@@ -6,6 +6,8 @@ const cinza = Color.fromRGBO(127, 110, 135, 100);
 
 var textoMultiCor = Row(
   children: [
+    Image.asset("midia/icone_camera.png"),
+    const SizedBox(width: 10,),
     Text(
       'Receba',
       style: textStilizido(tamFonte: 30, cor: roxo)
@@ -18,8 +20,7 @@ var textoMultiCor = Row(
 );
 
 var barraSuper  = AppBar(
-  leading: Image.asset("midia/icone_camera.png",),
-  title: textoMultiCor
+  title: textoMultiCor,
 );
 
 var containerStyle = BoxDecoration(
